@@ -2,9 +2,9 @@
  * Responsible for the formatting of output from <i>Duke</i>.
  */
 public class PrettyPrinter {
-    /** The number of spaces to prefix each line with. */
+    /** Number of spaces to prefix each line with. */
     private final int leftPadding;
-    /** The number of underscores each divider should be made up of. */
+    /** Number of underscores each divider should be made up of. */
     private final int dividerLength;
 
     /**
