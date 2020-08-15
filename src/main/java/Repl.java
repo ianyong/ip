@@ -29,16 +29,22 @@ public class Repl {
     public static void run() {
         prettyPrinter.print(WELCOME_MESSAGE);
         while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            String line = scanner.nextLine();
+            String[] tokens = line.split(" ");
+            String command = tokens[0];
             switch (command) {
                 case "bye":
                     prettyPrinter.print(FAREWELL_MESSAGE);
                     return;
+                case "done":
+                    int listIndex = Integer.parseInt(tokens[1]) - 1;
+                    prettyPrinter.print(taskManager.markAsDone(listIndex));
+                    break;
                 case "list":
                     prettyPrinter.print(taskManager.toString());
                     break;
                 default:
-                    prettyPrinter.print(taskManager.addTask(command));
+                    prettyPrinter.print(taskManager.addTask(line));
                     break;
             }
         }
