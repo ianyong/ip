@@ -17,6 +17,8 @@ public class Repl {
     private static final String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
     /** Error to be displayed when marking a {@code Task} as done fails. */
     private static final String MARK_AS_DONE_ERROR = "Please input a valid task index.";
+    /** Error to be displayed when an invalid command is inputted. */
+    private static final String INVALID_COMMAND_ERROR = "Please input a valid command.";
 
     /** {@code Scanner} object which reads in user input. */
     private static final Scanner scanner = new Scanner(System.in);
@@ -49,8 +51,12 @@ public class Repl {
                 case "list":
                     prettyPrinter.print(taskManager.toString());
                     break;
+                case "todo":
+                    String toDoName = line.replaceFirst("^todo\\s*", "");
+                    prettyPrinter.print(taskManager.addToDo(toDoName));
+                    break;
                 default:
-                    prettyPrinter.print(taskManager.addTask(line));
+                    prettyPrinter.print(INVALID_COMMAND_ERROR);
                     break;
             }
         }

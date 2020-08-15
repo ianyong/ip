@@ -17,21 +17,21 @@ public class TaskManager {
     public TaskManager() {}
 
     /**
-     * Adds a new {@code Task} with the specified name.
+     * Adds a new {@code ToDo} with the specified name.
      *
-     * @param taskName the name of the {@code Task} object to be created.
-     * @return a string representation of the action of adding a task.
+     * @param name the name of the {@code ToDo} object to be created.
+     * @return a string representation of the action of adding a {@code ToDo}.
      */
-    public String addTask(String taskName) {
-        tasks.add(new Task(taskName));
-        return ADD_TASK_MESSAGE_PREFIX + taskName;
+    public String addToDo(String name) {
+        tasks.add(new ToDo(name));
+        return ADD_TASK_MESSAGE_PREFIX + name;
     }
 
     /**
      * Mark a {@code Task} as done.
      *
      * @param listIndex the index of the {@code Task} in the {@code TaskManager} list.
-     * @return a string representation of the action of marking a task as done.
+     * @return a string representation of the action of marking a {@code Task} as done.
      */
     public String markAsDone(int listIndex) {
         Task updatedTask = tasks.get(listIndex).markAsDone();

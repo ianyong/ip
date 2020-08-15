@@ -1,9 +1,9 @@
 /**
  * Represents a task within <i>Duke</i>.
  */
-public class Task {
+public abstract class Task {
     /** Name of the {@code Task}. */
-    private final String name;
+    protected final String name;
     /** Whether the {@code Task} has been completed. */
     private final boolean isDone;
 
@@ -18,7 +18,7 @@ public class Task {
      *
      * @param name the name of the {@code Task}.
      */
-    public Task(String name) {
+    protected Task(String name) {
         this(name, false);
     }
 
@@ -27,7 +27,7 @@ public class Task {
      *
      * @param name the name of the {@code Task}.
      */
-    private Task(String name, boolean isDone) {
+    protected Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
@@ -37,9 +37,7 @@ public class Task {
      *
      * @return a new completed {@code Task} object with the same {@code name} as this {@code Task}.
      */
-    public Task markAsDone() {
-        return new Task(name, true);
-    }
+    public abstract Task markAsDone();
 
     /**
      * Returns the name of this {@code Task} object.
