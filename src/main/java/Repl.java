@@ -15,6 +15,8 @@ public class Repl {
     private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
     /** Message to be displayed on exit. */
     private static final String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
+    /** Error to be displayed when marking a {@code Task} as done fails. */
+    private static final String MARK_AS_DONE_ERROR = "Please input a valid task index.";
 
     /** {@code Scanner} object which reads in user input. */
     private static final Scanner scanner = new Scanner(System.in);
@@ -37,8 +39,12 @@ public class Repl {
                     prettyPrinter.print(FAREWELL_MESSAGE);
                     return;
                 case "done":
-                    int listIndex = Integer.parseInt(tokens[1]) - 1;
-                    prettyPrinter.print(taskManager.markAsDone(listIndex));
+                    try {
+                        int listIndex = Integer.parseInt(tokens[1]) - 1;
+                        prettyPrinter.print(taskManager.markAsDone(listIndex));
+                    } catch (Exception e) {
+                        prettyPrinter.print(MARK_AS_DONE_ERROR);
+                    }
                     break;
                 case "list":
                     prettyPrinter.print(taskManager.toString());
