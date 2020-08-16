@@ -37,7 +37,7 @@ public abstract class Task {
     public abstract Task markAsDone();
 
     /**
-     * Returns the name of this {@code Task} object.
+     * Returns a string representation of this {@code Task} object.
      *
      * @return a string representation of the {@code Task}.
      */

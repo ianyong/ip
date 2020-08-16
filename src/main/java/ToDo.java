@@ -34,7 +34,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns the name of this {@code ToDo} object.
+     * Returns a string representation of this {@code ToDo} object.
      *
      * @return a string representation of the {@code ToDo}.
      */

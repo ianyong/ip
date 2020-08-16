@@ -40,7 +40,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the name of this {@code Deadline} object.
+     * Returns a string representation of this {@code Deadline} object.
      *
      * @return a string representation of the {@code Deadline}.
      */

@@ -40,7 +40,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the name of this {@code Event} object.
+     * Returns a string representation of this {@code Event} object.
      *
      * @return a string representation of the {@code Event}.
      */
