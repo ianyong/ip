@@ -36,4 +36,14 @@ public class Event extends Task {
     public Event markAsDone() {
         return new Event(name, dateTime, true);
     }
+
+    /**
+     * Returns the name of this {@code Event} object.
+     *
+     * @return a string representation of the {@code Event}.
+     */
+    @Override
+    public String toString() {
+        return String.format("[E]%s (at: %s)", super.toString(), dateTime);
+    }
 }

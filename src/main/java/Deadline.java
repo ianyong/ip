@@ -36,4 +36,14 @@ public class Deadline extends Task {
     public Deadline markAsDone() {
         return new Deadline(name, dueDate, true);
     }
+
+    /**
+     * Returns the name of this {@code Deadline} object.
+     *
+     * @return a string representation of the {@code Deadline}.
+     */
+    @Override
+    public String toString() {
+        return String.format("[D]%s (by: %s)", super.toString(), dueDate);
+    }
 }

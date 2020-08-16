@@ -42,7 +42,7 @@ public class Repl {
                     return;
                 case "deadline":
                     line = line.replaceFirst("^deadline\\s*", "");
-                    args = line.split("/by");
+                    args = line.split("\\s*/by\\s*");
                     String deadlineName = args[0];
                     String dueDate = args[1];
                     prettyPrinter.print(taskManager.addTask(new Deadline(deadlineName, dueDate)));
@@ -59,7 +59,7 @@ public class Repl {
                     break;
                 case "event":
                     line = line.replaceFirst("^deadline\\s*", "");
-                    args = line.split("/by");
+                    args = line.split("\\s*/at\\s*");
                     String eventName = args[0];
                     String dateTime = args[1];
                     prettyPrinter.print(taskManager.addTask(new Event(eventName, dateTime)));

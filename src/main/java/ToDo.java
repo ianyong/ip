@@ -30,4 +30,14 @@ public class ToDo extends Task {
     public ToDo markAsDone() {
         return new ToDo(name, true);
     }
+
+    /**
+     * Returns the name of this {@code ToDo} object.
+     *
+     * @return a string representation of the {@code ToDo}.
+     */
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
 }
