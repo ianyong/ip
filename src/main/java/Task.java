@@ -26,6 +26,7 @@ public abstract class Task {
      * Constructs a new {@code Task} object.
      *
      * @param name the name of the {@code Task}.
+     * @param isDone whether the {@code Task} has been completed.
      */
     protected Task(String name, boolean isDone) {
         this.name = name;

@@ -17,6 +17,30 @@ public class TaskManager {
     public TaskManager() {}
 
     /**
+     * Adds a new {@code Deadline} with the specified name and due date.
+     *
+     * @param name the name of the {@code Deadline} object to be created.
+     * @param dueDate the due date of the {@code Deadline} object to be created.
+     * @return a string representation of the action of adding a {@code Deadline}.
+     */
+    public String addDeadline(String name, String dueDate) {
+        tasks.add(new Deadline(name, dueDate));
+        return ADD_TASK_MESSAGE_PREFIX + name;
+    }
+
+    /**
+     * Adds a new {@code Event} with the specified name and date/time.
+     *
+     * @param name the name of the {@code Event} object to be created.
+     * @param dateTime the date/time of the {@code Event} object to be created.
+     * @return a string representation of the action of adding an {@code Event}.
+     */
+    public String addEvent(String name, String dateTime) {
+        tasks.add(new Event(name, dateTime));
+        return ADD_TASK_MESSAGE_PREFIX + name;
+    }
+
+    /**
      * Adds a new {@code ToDo} with the specified name.
      *
      * @param name the name of the {@code ToDo} object to be created.

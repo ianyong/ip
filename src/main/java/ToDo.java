@@ -15,6 +15,7 @@ public class ToDo extends Task {
      * Constructs a new {@code ToDo} object.
      *
      * @param name the name of the {@code ToDo}.
+     * @param isDone whether the {@code ToDo} has been completed.
      */
     private ToDo(String name, boolean isDone) {
         super(name, isDone);
@@ -26,7 +27,7 @@ public class ToDo extends Task {
      * @return a new completed {@code ToDo} object with the same {@code name} as this {@code ToDo}.
      */
     @Override
-    public Task markAsDone() {
+    public ToDo markAsDone() {
         return new ToDo(name, true);
     }
 }

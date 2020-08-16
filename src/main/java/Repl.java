@@ -34,19 +34,35 @@ public class Repl {
         prettyPrinter.print(WELCOME_MESSAGE);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] tokens = line.split(" ");
-            String command = tokens[0];
+            String command = line.split(" ")[0];
+            String[] args;
             switch (command) {
                 case "bye":
                     prettyPrinter.print(FAREWELL_MESSAGE);
                     return;
+                case "deadline":
+                    line = line.replaceFirst("^deadline\\s*", "");
+                    args = line.split("/by");
+                    String deadlineName = args[0];
+                    String dueDate = args[1];
+                    prettyPrinter.print(taskManager.addDeadline(deadlineName, dueDate));
+                    break;
                 case "done":
                     try {
-                        int listIndex = Integer.parseInt(tokens[1]) - 1;
+                        line = line.replaceFirst("^done\\s*", "");
+                        args = line.split("");
+                        int listIndex = Integer.parseInt(args[0]) - 1;
                         prettyPrinter.print(taskManager.markAsDone(listIndex));
                     } catch (Exception e) {
                         prettyPrinter.print(MARK_AS_DONE_ERROR);
                     }
+                    break;
+                case "event":
+                    line = line.replaceFirst("^deadline\\s*", "");
+                    args = line.split("/by");
+                    String eventName = args[0];
+                    String dateTime = args[1];
+                    prettyPrinter.print(taskManager.addEvent(eventName, dateTime));
                     break;
                 case "list":
                     prettyPrinter.print(taskManager.toString());
