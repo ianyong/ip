@@ -1,4 +1,5 @@
 import enums.Command;
+import exceptions.DukeException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.TaskManager;
@@ -48,6 +49,7 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new Deadline(deadlineName, dueDate)));
                         break;
                     case DONE:
+                        Command.DONE.validate(line);
                         try {
                             line = line.replaceFirst("^done\\s*", "");
                             args = line.split("");
@@ -72,6 +74,8 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                         break;
                 }
+            } catch (DukeException e) {
+                prettyPrinter.print(e.getMessage());
             } catch (IllegalArgumentException e) {
                 prettyPrinter.print(ResourceHandler.getString("repl.unknownCommand"));
             }
