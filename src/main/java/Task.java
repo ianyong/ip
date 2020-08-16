@@ -1,3 +1,5 @@
+import java.text.MessageFormat;
+
 /**
  * Represents a task within <i>Duke</i>.
  */
@@ -6,12 +8,6 @@ public abstract class Task {
     protected final String name;
     /** Whether the {@code Task} has been completed. */
     private final boolean isDone;
-
-    // Strings
-    /** Check symbol. */
-    private static final char CHECK_SYMBOL = '\u2713';
-    /** Cross symbol. */
-    private static final char CROSS_SYMBOL = '\u2718';
 
     /**
      * Constructs a new uncompleted {@code Task} object.
@@ -47,7 +43,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        char symbol = isDone ? CHECK_SYMBOL : CROSS_SYMBOL;
-        return String.format("[%c] %s", symbol, name);
+        String key = isDone ? "task.toString.done" : "task.toString.notDone";
+        return MessageFormat.format(ResourceHandler.getString(key), name);
     }
 }

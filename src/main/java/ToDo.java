@@ -1,3 +1,5 @@
+import java.text.MessageFormat;
+
 /**
  * A specialised {@code Task} that does not have any date/time attached to it.
  */
@@ -38,6 +40,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return MessageFormat.format(ResourceHandler.getString("toDo.toString"), super.toString());
     }
 }

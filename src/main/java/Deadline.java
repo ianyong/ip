@@ -1,3 +1,5 @@
+import java.text.MessageFormat;
+
 /**
  * A specialised {@code Task} that needs to be done before a specific date/time.
  */
@@ -44,6 +46,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), dueDate);
+        return MessageFormat.format(ResourceHandler.getString("deadline.toString"), super.toString(), dueDate);
     }
 }

@@ -1,3 +1,5 @@
+import java.text.MessageFormat;
+
 /**
  * A specialised {@code Task} that starts and ends at a specific time.
  */
@@ -44,6 +46,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), dateTime);
+        return MessageFormat.format(ResourceHandler.getString("event.toString"), super.toString(), dateTime);
     }
 }

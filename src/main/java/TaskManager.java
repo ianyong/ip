@@ -43,7 +43,8 @@ public class TaskManager {
      */
     @Override
     public String toString() {
-        StringBuilder formattedList = new StringBuilder(ResourceHandler.getString("taskManager.listTasksPrefix"));
+        StringBuilder formattedList =
+                new StringBuilder(ResourceHandler.getString("taskManager.listTasksPrefix") + "\n");
         for (int i = 0; i < tasks.size(); i++) {
             formattedList.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
