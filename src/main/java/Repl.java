@@ -1,3 +1,9 @@
+import tasks.Deadline;
+import tasks.Event;
+import tasks.TaskManager;
+import tasks.ToDo;
+import utils.PrettyPrinter;
+import utils.ResourceHandler;
 import java.util.Scanner;
 
 /**
