@@ -1,3 +1,4 @@
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,13 +6,6 @@ import java.util.List;
  * Manages {@code Task} objects.
  */
 public class TaskManager {
-    /** Message prefix to be displayed upon adding a {@code Task}. */
-    private static final String ADD_TASK_MESSAGE_PREFIX = "Got it. I've added this task:\n  ";
-    /** Message to be displayed upon marking a {@code Task} as done. */
-    private static final String MARK_TASK_DONE_MESSAGE = "Nice! I've marked this task as done:\n  ";
-    /** Message prefix to be displayed when listing {@code Task}s. */
-    private static final String LIST_TASKS_MESSAGE_PREFIX = "Here are the tasks in your list:\n";
-
     /** List of {@code Task} objects. */
     private final List<Task> tasks = new ArrayList<>();
 
@@ -26,9 +20,8 @@ public class TaskManager {
      */
     public String addTask(Task task) {
         tasks.add(task);
-        // TODO: Handle the string resource better.
-        // TODO: Distinguish between singular and plural form of 'task'
-        return String.format("%s%s\nNow you have %d tasks in the list.", ADD_TASK_MESSAGE_PREFIX, task, tasks.size());
+        String key = tasks.size() == 1 ? "taskManager.addTask.singular" : "taskManager.addTask.plural";
+        return MessageFormat.format(ResourceHandler.getString(key), task, tasks.size());
     }
 
     /**
@@ -40,7 +33,7 @@ public class TaskManager {
     public String markAsDone(int listIndex) {
         Task updatedTask = tasks.get(listIndex).markAsDone();
         tasks.set(listIndex, updatedTask);
-        return MARK_TASK_DONE_MESSAGE + updatedTask;
+        return String.format("%s\n  %s", ResourceHandler.getString("taskManager.markTaskDone"), updatedTask);
     }
 
     /**
@@ -50,7 +43,7 @@ public class TaskManager {
      */
     @Override
     public String toString() {
-        StringBuilder formattedList = new StringBuilder(LIST_TASKS_MESSAGE_PREFIX);
+        StringBuilder formattedList = new StringBuilder(ResourceHandler.getString("taskManager.listTasksPrefix"));
         for (int i = 0; i < tasks.size(); i++) {
             formattedList.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }

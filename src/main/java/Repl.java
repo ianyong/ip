@@ -10,16 +10,6 @@ public class Repl {
     /** Number of underscores each divider should be made up of. */
     private static final int DIVIDER_LENGTH = 60;
 
-    // Strings
-    /** Message to be displayed on start-up. */
-    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
-    /** Message to be displayed on exit. */
-    private static final String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
-    /** Error to be displayed when marking a {@code Task} as done fails. */
-    private static final String MARK_AS_DONE_ERROR = "Please input a valid task index.";
-    /** Error to be displayed when an invalid command is inputted. */
-    private static final String INVALID_COMMAND_ERROR = "Please input a valid command.";
-
     /** {@code Scanner} object which reads in user input. */
     private static final Scanner scanner = new Scanner(System.in);
     /** {@code PrettyPrinter} object for formatting the REPL output. */
@@ -31,14 +21,14 @@ public class Repl {
      * Runs the REPL.
      */
     public static void run() {
-        prettyPrinter.print(WELCOME_MESSAGE);
+        prettyPrinter.print(ResourceHandler.getString("repl.greeting"));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String command = line.split(" ")[0];
             String[] args;
             switch (command) {
                 case "bye":
-                    prettyPrinter.print(FAREWELL_MESSAGE);
+                    prettyPrinter.print(ResourceHandler.getString("repl.farewell"));
                     return;
                 case "deadline":
                     line = line.replaceFirst("^deadline\\s*", "");
@@ -54,7 +44,7 @@ public class Repl {
                         int listIndex = Integer.parseInt(args[0]) - 1;
                         prettyPrinter.print(taskManager.markAsDone(listIndex));
                     } catch (Exception e) {
-                        prettyPrinter.print(MARK_AS_DONE_ERROR);
+                        prettyPrinter.print(ResourceHandler.getString("repl.invalidTaskIndex"));
                     }
                     break;
                 case "event":
@@ -72,7 +62,7 @@ public class Repl {
                     prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                     break;
                 default:
-                    prettyPrinter.print(INVALID_COMMAND_ERROR);
+                    prettyPrinter.print(ResourceHandler.getString("repl.unknownCommand"));
                     break;
             }
         }
