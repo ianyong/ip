@@ -45,7 +45,7 @@ public class Repl {
                     args = line.split("/by");
                     String deadlineName = args[0];
                     String dueDate = args[1];
-                    prettyPrinter.print(taskManager.addDeadline(deadlineName, dueDate));
+                    prettyPrinter.print(taskManager.addTask(new Deadline(deadlineName, dueDate)));
                     break;
                 case "done":
                     try {
@@ -62,14 +62,14 @@ public class Repl {
                     args = line.split("/by");
                     String eventName = args[0];
                     String dateTime = args[1];
-                    prettyPrinter.print(taskManager.addEvent(eventName, dateTime));
+                    prettyPrinter.print(taskManager.addTask(new Event(eventName, dateTime)));
                     break;
                 case "list":
                     prettyPrinter.print(taskManager.toString());
                     break;
                 case "todo":
                     String toDoName = line.replaceFirst("^todo\\s*", "");
-                    prettyPrinter.print(taskManager.addToDo(toDoName));
+                    prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                     break;
                 default:
                     prettyPrinter.print(INVALID_COMMAND_ERROR);
