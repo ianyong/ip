@@ -37,13 +37,13 @@ public class Repl {
             String[] args;
             try {
                 command = Command.valueOf(firstToken.toUpperCase());
+                // Check that the user input is of the correct format for the command.
+                command.validate(line);
                 switch (command) {
                     case BYE:
-                        Command.BYE.validate(line);
                         prettyPrinter.print(ResourceHandler.getString("repl.farewell"));
                         return;
                     case DEADLINE:
-                        Command.DEADLINE.validate(line);
                         line = line.replaceFirst("^deadline\\s*", "");
                         args = line.split("\\s*/by\\s*");
                         String deadlineName = args[0];
@@ -51,7 +51,6 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new Deadline(deadlineName, dueDate)));
                         break;
                     case DONE:
-                        Command.DONE.validate(line);
                         try {
                             line = line.replaceFirst("^done\\s*", "");
                             args = line.split("");
@@ -62,7 +61,6 @@ public class Repl {
                         }
                         break;
                     case EVENT:
-                        Command.EVENT.validate(line);
                         line = line.replaceFirst("^event\\s*", "");
                         args = line.split("\\s*/at\\s*");
                         String eventName = args[0];
@@ -70,11 +68,9 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new Event(eventName, dateTime)));
                         break;
                     case LIST:
-                        Command.LIST.validate(line);
                         prettyPrinter.print(taskManager.toString());
                         break;
                     case TODO:
-                        Command.TODO.validate(line);
                         String toDoName = line.replaceFirst("^todo\\s*", "");
                         prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                         break;
