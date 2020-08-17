@@ -42,6 +42,7 @@ public class Repl {
                         prettyPrinter.print(ResourceHandler.getString("repl.farewell"));
                         return;
                     case DEADLINE:
+                        Command.DEADLINE.validate(line);
                         line = line.replaceFirst("^deadline\\s*", "");
                         args = line.split("\\s*/by\\s*");
                         String deadlineName = args[0];
@@ -60,7 +61,8 @@ public class Repl {
                         }
                         break;
                     case EVENT:
-                        line = line.replaceFirst("^deadline\\s*", "");
+                        Command.EVENT.validate(line);
+                        line = line.replaceFirst("^event\\s*", "");
                         args = line.split("\\s*/at\\s*");
                         String eventName = args[0];
                         String dateTime = args[1];

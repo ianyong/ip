@@ -24,9 +24,21 @@ public enum Command {
      * Adds a {@code Deadline} task to the {@code TaskManager}.
      */
     DEADLINE {
+        /**
+         * Validates whether the user input is of the correct format for the 'deadline' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
         @Override
-        public void validate(String input) {
-
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)deadline\\s+.*\\S+.*\\s+/by\\s+.*\\S+.*\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
+                        ResourceHandler.getString("command.deadlineFormat"));
+                String message = MessageFormat.format(template, "deadline");
+                throw new DukeException(message);
+            }
         }
     },
 
@@ -56,9 +68,21 @@ public enum Command {
      * Adds an {@code Event} task to the {@code TaskManager}.
      */
     EVENT {
+        /**
+         * Validates whether the user input is of the correct format for the 'event' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
         @Override
-        public void validate(String input) {
-
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)event\\s+.*\\S+.*\\s+/at\\s+.*\\S+.*\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
+                        ResourceHandler.getString("command.eventFormat"));
+                String message = MessageFormat.format(template, "event");
+                throw new DukeException(message);
+            }
         }
     },
 
