@@ -39,6 +39,7 @@ public class Repl {
                 command = Command.valueOf(firstToken.toUpperCase());
                 switch (command) {
                     case BYE:
+                        Command.BYE.validate(line);
                         prettyPrinter.print(ResourceHandler.getString("repl.farewell"));
                         return;
                     case DEADLINE:
@@ -69,6 +70,7 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new Event(eventName, dateTime)));
                         break;
                     case LIST:
+                        Command.LIST.validate(line);
                         prettyPrinter.print(taskManager.toString());
                         break;
                     case TODO:

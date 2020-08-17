@@ -14,9 +14,20 @@ public enum Command {
      * Terminates the running of <i>Duke</i>.
      */
     BYE {
+        /**
+         * Validates whether the user input is of the correct format for the 'bye' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
         @Override
-        public void validate(String input) {
-
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)bye\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = ResourceHandler.getString("exception.noArgs");
+                String message = MessageFormat.format(template, "bye");
+                throw new DukeException(message);
+            }
         }
     },
 
@@ -90,9 +101,20 @@ public enum Command {
      * Lists all {@code Task}s in the {@code TaskManager}.
      */
     LIST {
+        /**
+         * Validates whether the user input is of the correct format for the 'list' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
         @Override
-        public void validate(String input) {
-
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)list\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = ResourceHandler.getString("exception.noArgs");
+                String message = MessageFormat.format(template, "list");
+                throw new DukeException(message);
+            }
         }
     },
 
