@@ -122,9 +122,21 @@ public enum Command {
      * Adds a {@code ToDo} task to the {@code TaskManager}.
      */
     TODO {
+        /**
+         * Validates whether the user input is of the correct format for the 'todo' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
         @Override
-        public void validate(String input) {
-
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)todo\\s+.*\\S+.*\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
+                        ResourceHandler.getString("command.toDoFormat"));
+                String message = MessageFormat.format(template, "todo");
+                throw new DukeException(message);
+            }
         }
     };
 

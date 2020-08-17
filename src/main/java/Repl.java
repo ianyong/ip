@@ -74,6 +74,7 @@ public class Repl {
                         prettyPrinter.print(taskManager.toString());
                         break;
                     case TODO:
+                        Command.TODO.validate(line);
                         String toDoName = line.replaceFirst("^todo\\s*", "");
                         prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                         break;
