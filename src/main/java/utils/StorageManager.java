@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * Responsible for saving and loading the state of the application from a file.
  */
 public class StorageManager {
-    /** Path of the file to read from and write to */
+    /** Path of the file to read from and write to. */
     private final String filePath;
 
     /**

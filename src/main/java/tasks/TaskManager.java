@@ -1,8 +1,8 @@
 package tasks;
 
+import utils.PersistentList;
 import utils.ResourceHandler;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class TaskManager {
     /** List of {@code Task} objects. */
-    private final List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks = new PersistentList<>("./data/tasks.txt");
 
     /** Constructs a {@code TaskManager} object. */
     public TaskManager() {}
