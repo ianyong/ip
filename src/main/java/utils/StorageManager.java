@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +29,14 @@ public class StorageManager {
      * @throws IOException if an I/O error occurs.
      */
     public void saveToFile(String data) throws IOException {
-        FileWriter fileWriter = new FileWriter(filePath);
+        File file = new File(filePath);
+        File parentDir = file.getParentFile();
+        // If the parent directory does not exist, create it along with any other
+        // necessary but non-existent parent directories.
+        if (!parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+        FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(data);
         fileWriter.close();
     }
