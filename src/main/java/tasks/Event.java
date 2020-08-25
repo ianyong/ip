@@ -2,20 +2,21 @@ package tasks;
 
 import utils.ResourceHandler;
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
 
 /**
  * A specialised {@code Task} that starts and ends at a specific time.
  */
 public class Event extends Task {
-    private final String dateTime;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a new uncompleted {@code Event} object.
      *
      * @param name the name of the {@code Event}.
-     * @param dateTime a string representing the date and time of the {@code Event}.
+     * @param dateTime a {@code LocalDueDate} object representing the date and time of the {@code Event}.
      */
-    public Event(String name, String dateTime) {
+    public Event(String name, LocalDateTime dateTime) {
         super(name);
         this.dateTime = dateTime;
     }
@@ -24,10 +25,10 @@ public class Event extends Task {
      * Constructs a new uncompleted {@code Event} object.
      *
      * @param name the name of the {@code Event}.
-     * @param dateTime a string representing the date and time of the {@code Event}.
+     * @param dateTime a {@code LocalDueDate} object representing the date and time of the {@code Event}.
      * @param isDone whether the {@code Event} has been completed.
      */
-    public Event(String name, String dateTime, boolean isDone) {
+    public Event(String name, LocalDateTime dateTime, boolean isDone) {
         super(name, isDone);
         this.dateTime = dateTime;
     }

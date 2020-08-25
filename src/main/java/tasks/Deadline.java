@@ -2,20 +2,21 @@ package tasks;
 
 import utils.ResourceHandler;
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
 
 /**
  * A specialised {@code Task} that needs to be done before a specific date/time.
  */
 public class Deadline extends Task {
-    private final String dueDate;
+    private final LocalDateTime dueDate;
 
     /**
      * Constructs a new uncompleted {@code Deadline} object.
      *
      * @param name the name of the {@code Deadline}.
-     * @param dueDate a string representing the due date of the {@code Deadline}.
+     * @param dueDate a {@code LocalDueDate} object representing the due date of the {@code Deadline}.
      */
-    public Deadline(String name, String dueDate) {
+    public Deadline(String name, LocalDateTime dueDate) {
         super(name);
         this.dueDate = dueDate;
     }
@@ -24,10 +25,10 @@ public class Deadline extends Task {
      * Constructs a new {@code Deadline} object.
      *
      * @param name the name of the {@code Deadline}.
-     * @param dueDate a string representing the due date of the {@code Deadline}.
+     * @param dueDate a {@code LocalDueDate} object representing the due date of the {@code Deadline}.
      * @param isDone whether the {@code Deadline} has been completed.
      */
-    private Deadline(String name, String dueDate, boolean isDone) {
+    private Deadline(String name, LocalDateTime dueDate, boolean isDone) {
         super(name, isDone);
         this.dueDate = dueDate;
     }

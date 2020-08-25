@@ -2,6 +2,7 @@ package utils;
 
 import exceptions.DukeException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,14 +24,16 @@ public class DateTimeParser {
      * @throws DukeException if the string is of an invalid datetime format.
      */
     public static LocalDateTime parseDateTime(String dateTimeString) throws DukeException {
+        LocalDateTime localDateTime;
         try {
-            return LocalDateTime.parse(dateTimeString, dateTimeFormatter);
+            localDateTime = LocalDateTime.parse(dateTimeString, dateTimeFormatter);
         } catch (DateTimeParseException e1) {
             try {
-                return LocalDateTime.parse(dateTimeString, dateFormatter);
+                localDateTime = LocalDate.parse(dateTimeString, dateFormatter).atStartOfDay();
             } catch (DateTimeParseException e2) {
                 throw new DukeException(ResourceHandler.getString("exception.invalidDateTime"));
             }
         }
+        return localDateTime;
     }
 }
