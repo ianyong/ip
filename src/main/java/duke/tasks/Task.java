@@ -40,6 +40,15 @@ public abstract class Task {
     public abstract Task markAsDone();
 
     /**
+     * Returns whether the {@code Task} is done.
+     *
+     * @return whether the {@code Task} is done.
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
      * Checks whether the {@code Task} contains the keyword in its name.
      *
      * @param keyword the keyword that is being searched.
