@@ -1,5 +1,6 @@
 package tasks;
 
+import utils.DateTimeStringFormatter;
 import utils.ResourceHandler;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
@@ -50,6 +51,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return MessageFormat.format(ResourceHandler.getString("deadline.toString"), super.toString(), dueDate);
+        return MessageFormat.format(ResourceHandler.getString("deadline.toString"), super.toString(),
+                DateTimeStringFormatter.formatDateTime(dueDate));
     }
 }
