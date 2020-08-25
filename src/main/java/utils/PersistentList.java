@@ -2,8 +2,12 @@ package utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import tasks.Task;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,16 +24,22 @@ public class PersistentList<E> implements List<E> {
     /** {@code StorageManager} object for writing the state of the list to the specified file. */
     private final StorageManager storageManager;
     /** {@code Gson} object for converting objects to JSON. */
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final Gson gson;
+    /** Type of the list. This is necessary due to erasure of generic types. */
+    private final Type listType;
 
     /**
-     * Constructs a {@code PersistentList} object with the specified file.
+     * Constructs a {@code PersistentList} object with the specified file, type, and {@code TypeAdapterFactory}
      *
      * @param filePath the path of the file to read from and write to.
+     * @param listType the type of the list.
+     * @param typeAdapterFactory custom type adapter factory to handle polymorphism.
      */
-    public PersistentList(String filePath) {
-        list = new ArrayList<>();
+    public PersistentList(String filePath, Type listType, TypeAdapterFactory typeAdapterFactory) {
         storageManager = new StorageManager(filePath);
+        gson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).setPrettyPrinting().create();
+        this.listType = listType;
+        list = readStateFromFile();
     }
 
     /**
@@ -37,10 +47,26 @@ public class PersistentList<E> implements List<E> {
      */
     private void syncStateToFile() {
         try {
-            storageManager.saveToFile(gson.toJson(list));
+            storageManager.saveToFile(gson.toJson(list, listType));
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    /**
+     * Retrieves the current state of the list from the specified file.
+     *
+     * @return the current state of the list.
+     */
+    private List<E> readStateFromFile() {
+        try {
+            String data = storageManager.readFromFile();
+            Type listType = new TypeToken<ArrayList<Task>>(){}.getType();
+            return gson.fromJson(data, listType);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return new ArrayList<>();
     }
 
     /**
