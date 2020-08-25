@@ -44,10 +44,14 @@ public class StorageManager {
     /**
      * Reads data from the specified file.
      *
-     * @return the data present in the file.
+     * @return the data present in the file or a string representation of an empty array if the file does not exist.
      * @throws IOException if an I/O error occurs.
      */
     public String readFromFile() throws IOException {
+        // If the file does not exist, return a string representation of an empty array.
+        if (!(new File(filePath).exists())) {
+            return "[]";
+        }
         return Files.readString(Path.of(filePath));
     }
 }
