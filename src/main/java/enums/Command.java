@@ -141,6 +141,27 @@ public enum Command {
     },
 
     /**
+     * Lists all overdue {@code Task}s in the {@code TaskManager}.
+     */
+    OVERDUE {
+        /**
+         * Validates whether the user input is of the correct format for the 'overdue' command.
+         *
+         * @param input the user input.
+         * @throws DukeException if the user input is invalid.
+         */
+        @Override
+        public void validate(String input) throws DukeException {
+            String regex = "^(?i)overdue\\s*$";
+            if (!Pattern.matches(regex, input)) {
+                String template = ResourceHandler.getString("exception.noArgs");
+                String message = MessageFormat.format(template, "overdue");
+                throw new DukeException(message);
+            }
+        }
+    },
+
+    /**
      * Adds a {@code ToDo} task to the {@code TaskManager}.
      */
     TODO {

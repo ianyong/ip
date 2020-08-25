@@ -90,6 +90,10 @@ public class Repl {
                         prettyPrinter.print(taskManager.toString());
                         break;
                     }
+                    case OVERDUE: {
+                        prettyPrinter.print(taskManager.getOverdueTasks());
+                        break;
+                    }
                     case TODO: {
                         String lineWithoutCommand = line.replaceFirst("^todo", "");
                         String toDoName = lineWithoutCommand.trim();
