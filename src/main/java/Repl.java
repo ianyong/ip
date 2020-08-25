@@ -96,6 +96,10 @@ public class Repl {
                         prettyPrinter.print(taskManager.addTask(new ToDo(toDoName)));
                         break;
                     }
+                    case UPCOMING: {
+                        prettyPrinter.print(taskManager.getUpcomingTasks());
+                        break;
+                    }
                 }
             } catch (DukeException e) {
                 prettyPrinter.print(e.getMessage());

@@ -1,9 +1,12 @@
 package tasks;
 
 import utils.ResourceHandler;
+import utils.Schedulable;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Manages {@code Task} objects.
@@ -53,6 +56,17 @@ public class TaskManager {
         Task updatedTask = tasks.get(listIndex).markAsDone();
         tasks.set(listIndex, updatedTask);
         return String.format("%s\n  %s", ResourceHandler.getString("taskManager.markTaskDone"), updatedTask);
+    }
+
+    public String getUpcomingTasks() {
+        List<Task> sortedUpcomingTasks = tasks.stream().filter(task -> task instanceof Schedulable)
+                .filter(task -> !((Schedulable) task).hasDateTimeElapsed()).sorted().collect(Collectors.toList());
+        StringBuilder formattedList =
+                new StringBuilder(ResourceHandler.getString("taskManager.upcomingTasksPrefix") + "\n");
+        for (int i = 0; i < sortedUpcomingTasks.size(); i++) {
+            formattedList.append(String.format("%d. %s\n", i + 1, sortedUpcomingTasks.get(i)));
+        }
+        return formattedList.toString();
     }
 
     /**
