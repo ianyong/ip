@@ -131,7 +131,9 @@ public class Repl {
             case UPCOMING: {
                 response = taskManager.getUpcomingTasks();
                 break;
-            } // I'm aware that this bracket looks very weird; you can thank the CS2103T style guide for this.
+            }
+            default:
+                break;
             }
         } catch (DukeException e) {
             response = e.getMessage();
