@@ -52,7 +52,7 @@ public class Repl {
         try {
             Command command = Store.getAliasManager().getCommand(firstToken);
             // Check that the user input is of the correct format for the command.
-            command.validate(inputWithoutCommand);
+            command.validate(firstToken, inputWithoutCommand);
             // Execute the command.
             dukeResponse = command.execute(inputWithoutCommand);
         } catch (DukeException e) {

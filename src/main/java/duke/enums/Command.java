@@ -24,16 +24,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'alias' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*\\S+\\s+\\S+\\s*$|^\\s*-l\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.aliasFormat"));
-                String message = MessageFormat.format(template, "alias");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -68,15 +69,16 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'bye' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = ResourceHandler.getString("exception.noArgs");
-                String message = MessageFormat.format(template, "bye");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -102,16 +104,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'deadline' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*.*\\S+.*\\s+/by\\s+.*\\S+.*\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.deadlineFormat"));
-                String message = MessageFormat.format(template, "deadline");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -141,16 +144,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'delete' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*\\d+\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.deleteFormat"));
-                String message = MessageFormat.format(template, "delete");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -184,16 +188,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'done' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*\\d+\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.doneFormat"));
-                String message = MessageFormat.format(template, "done");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -227,16 +232,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'event' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*.*\\S+.*\\s+/at\\s+.*\\S+.*\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.eventFormat"));
-                String message = MessageFormat.format(template, "event");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -266,16 +272,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'find' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*.*\\S+.*\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.findFormat"));
-                String message = MessageFormat.format(template, "find");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -301,15 +308,16 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'list' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = ResourceHandler.getString("exception.noArgs");
-                String message = MessageFormat.format(template, "list");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -334,15 +342,16 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'overdue' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = ResourceHandler.getString("exception.noArgs");
-                String message = MessageFormat.format(template, "overdue");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -367,16 +376,17 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'todo' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*.*\\S+.*\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.toDoFormat"));
-                String message = MessageFormat.format(template, "todo");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -402,15 +412,16 @@ public enum Command {
         /**
          * Validates whether the user input is of the correct format for the 'upcoming' command.
          *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
          * @param inputArgs the user inputted arguments.
          * @throws DukeException if the user input is invalid.
          */
         @Override
-        public void validate(String inputArgs) throws DukeException {
+        public void validate(String alias, String inputArgs) throws DukeException {
             String regex = "^\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = ResourceHandler.getString("exception.noArgs");
-                String message = MessageFormat.format(template, "upcoming");
+                String message = MessageFormat.format(template, alias);
                 throw new DukeException(message);
             }
         }
@@ -431,10 +442,11 @@ public enum Command {
     /**
      * Validates whether the user input is of the correct format.
      *
+     * @param alias the name used in invoking the command; can be either the command name or an alias.
      * @param inputArgs the user inputted arguments.
      * @throws DukeException if the user input is invalid.
      */
-    public abstract void validate(String inputArgs) throws DukeException;
+    public abstract void validate(String alias, String inputArgs) throws DukeException;
 
     /**
      * Executes the command.
