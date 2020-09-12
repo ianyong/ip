@@ -58,6 +58,25 @@ public class AliasManager {
     }
 
     /**
+     * Removes an association between an alias and a command.
+     *
+     * @param alias the alias to be removed.
+     * @return a string representation of the action of removing an alias.
+     */
+    public String removeAlias(String alias) {
+        Command previousCommand = aliases.remove(alias);
+
+        String response;
+        if (previousCommand == null) {
+            response = ResourceHandler.getString("aliasManager.aliasNotFound");
+        } else {
+            response = ResourceHandler.getString("aliasManager.removeAlias");
+        }
+
+        return response;
+    }
+
+    /**
      * Returns the {@code Command} that corresponds to the alias. Note that every command is an alias for
      * itself.
      *

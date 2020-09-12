@@ -30,7 +30,7 @@ public enum Command {
          */
         @Override
         public void validate(String alias, String inputArgs) throws DukeException {
-            String regex = "^\\s*\\S+\\s+\\S+\\s*$|^\\s*-l\\s*$";
+            String regex = "^\\s*\\S+\\s+\\S+\\s*$|^\\s*-l\\s*$|^\\s*-rm\\s+\\S+\\s*$";
             if (!Pattern.matches(regex, inputArgs)) {
                 String template = String.format("%s\n%s", ResourceHandler.getString("exception.invalidArgs"),
                         ResourceHandler.getString("command.aliasFormat"));
@@ -47,17 +47,23 @@ public enum Command {
          */
         @Override
         public DukeResponse execute(String inputArgs) {
-            String regex = "^\\s*-l\\s*$";
-            if (Pattern.matches(regex, inputArgs)) {
+            String listRegex = "^\\s*-l\\s*$";
+            String removeRegex = "^\\s*-rm\\s+\\S+\\s*$";
+            String response;
+            if (Pattern.matches(listRegex, inputArgs)) {
                 // Display list of aliases.
-                return new DukeResponse(Store.getAliasManager().toString());
+                response = Store.getAliasManager().toString();
+            } else if (Pattern.matches(removeRegex, inputArgs)) {
+                // Remove specified alias
+                String alias = inputArgs.replaceFirst("-rm", "").trim();
+                response = Store.getAliasManager().removeAlias(alias);
+            } else {
+                // Add a new alias.
+                String[] argTokens = inputArgs.trim().split("\\s+", 2);
+                String command = argTokens[0].trim();
+                String alias = argTokens[1].trim();
+                response = Store.getAliasManager().addAlias(alias, command);
             }
-
-            // Add a new alias.
-            String[] argTokens = inputArgs.trim().split("\\s+", 2);
-            String command = argTokens[0].trim();
-            String alias = argTokens[1].trim();
-            String response = Store.getAliasManager().addAlias(alias, command);
             return new DukeResponse(response);
         }
     },
