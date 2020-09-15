@@ -2,6 +2,7 @@ package duke.enums;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
@@ -342,6 +343,55 @@ public enum Command {
         @Override
         public DukeResponse execute(String inputArgs) {
             String response = Store.getResourceHandler().getString("command.help");
+            return new DukeResponse(response);
+        }
+    },
+
+    /**
+     * Sets the language of <i>Duke</i>.
+     */
+    LANGUAGE {
+        /**
+         * Validates whether the user input is of the correct format for the 'language' command.
+         *
+         * @param alias the name used in invoking the command; can be either the command name or an alias.
+         * @param inputArgs the user inputted arguments.
+         * @throws DukeException if the user input is invalid.
+         */
+        @Override
+        public void validate(String alias, String inputArgs) throws DukeException {
+            String regex = "^\\s*(?i)(english|chinese|en|zh)\\s*$";
+            if (!Pattern.matches(regex, inputArgs)) {
+                String template = String.format("%s\n%s",
+                        Store.getResourceHandler().getString("exception.invalidArgs"),
+                        Store.getResourceHandler().getString("command.languageFormat"));
+                String message = MessageFormat.format(template, alias);
+                throw new DukeException(message);
+            }
+        }
+
+        /**
+         * Executes the 'language' command.
+         *
+         * @param inputArgs the user inputted arguments.
+         * @return the output of running the 'language' command.
+         */
+        @Override
+        public DukeResponse execute(String inputArgs) {
+            String language = inputArgs.trim().toLowerCase();
+            switch (language) {
+            case "english":
+            case "en":
+                Store.getResourceHandler().setLocale(new Locale("en", "SG"));
+                break;
+            case "chinese":
+            case "zh":
+                Store.getResourceHandler().setLocale(new Locale("zh", "SG"));
+                break;
+            default:
+                assert false;
+            }
+            String response = Store.getResourceHandler().getString("command.switchLanguage");
             return new DukeResponse(response);
         }
     },

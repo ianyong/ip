@@ -33,12 +33,15 @@ public class ResourceHandler {
     }
 
     /**
-     * Sets the locale of this {@code ResourceHandler} object to the specified locale.
+     * Sets the locale of this {@code ResourceHandler} object to the specified locale. Updates the
+     * application configuration.
      *
      * @param locale the locale to be used.
      */
     public void setLocale(Locale locale) {
         this.locale = locale;
+        Store.getConfigManager().setProperty("language", locale.getLanguage());
+        Store.getConfigManager().setProperty("country", locale.getCountry());
     }
 
     /**
