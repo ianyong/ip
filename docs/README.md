@@ -1,8 +1,10 @@
 # User Guide
 
+![Duke](Ui.png)
+
 Welcome to Duke, the task manager application for command line interface (CLI) lovers!
 
-## Features 
+## Features
 
 ### Manage Your Tasks
 
