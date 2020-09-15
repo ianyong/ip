@@ -10,6 +10,8 @@ public class Store {
     private static final TaskManager taskManager = new TaskManager();
     /** {@code AliasManager} object to keep track of aliases. */
     private static final AliasManager aliasManager = new AliasManager();
+    /** {@code ResourceHandler} object to retrieve string resources. */
+    private static final ResourceHandler resourceHandler = new ResourceHandler();
 
     /**
      * Constructs a new {@code Store} object. This constructor is private to prevent instantiation.
@@ -32,5 +34,14 @@ public class Store {
      */
     public static AliasManager getAliasManager() {
         return aliasManager;
+    }
+
+    /**
+     * Returns the {@code ResourceHandler} object for retrieving string resources.
+     *
+     * @return the {@code ResourceHandler} object for retrieving string resources.
+     */
+    public static ResourceHandler getResourceHandler() {
+        return resourceHandler;
     }
 }

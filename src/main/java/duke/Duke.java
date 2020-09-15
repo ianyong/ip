@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 
-import duke.utils.ResourceHandler;
+import duke.utils.Store;
 import javafx.application.Application;
 
 /**
@@ -23,7 +23,7 @@ public class Duke {
             switch (args[0].toLowerCase()) {
             case "-h":
             case "--help":
-                System.out.println(ResourceHandler.getString("duke.help"));
+                System.out.println(Store.getResourceHandler().getString("duke.help"));
                 break;
             case "-c":
             case "--console":
@@ -34,7 +34,8 @@ public class Duke {
                 launchGui();
                 break;
             default:
-                System.out.println(MessageFormat.format(ResourceHandler.getString("duke.invalidCommand"), args[0]));
+                System.out.println(MessageFormat.format(
+                        Store.getResourceHandler().getString("duke.invalidCommand"), args[0]));
             }
         } else {
             launchGui();
