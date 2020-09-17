@@ -100,7 +100,9 @@ public class MainWindow extends AnchorPane {
             userInput.setText(commandHistory.navigateDown());
             break;
         default:
-            // Do nothing.
+            return;
         }
+        // Set the caret position to the end of the string.
+        userInput.positionCaret(userInput.getLength());
     }
 }
