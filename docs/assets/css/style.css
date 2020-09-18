@@ -1,5 +1,10 @@
-.image-container {
+.portrait-image-container {
     width: 50%;
+    margin: auto;
+}
+
+.landscape-image-container {
+    width: 90%;
     margin: auto;
 }
 
