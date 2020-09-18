@@ -1,17 +1,33 @@
-# User Guide
+# Duke | User Guide
 
 ![Duke](Ui.png)
 
-Welcome to Duke, the task manager application for command line interface (CLI) lovers!
+Duke is a *Personal Assistant Chatbot* with task management functionality.
+Keep track of all your tasks with ease!
 
 ## Features
 
 ### Manage Your Tasks
 
 To best cater to your task management needs, Duke supports the creation of three different types of tasks:
-- Events
-- ToDos
 - Deadlines
+- Events
+- Todos
+
+#### Deadlines
+
+Deadlines are tasks that have to be completed by a specific date and time.
+
+#### Events
+
+Events are tasks that occur at a specific date and time.
+
+#### Todos
+
+Todos are tasks that do not have a specific date and time attached to them.
+
+All of the above tasks track whether they have been completed.
+In addition, for deadline and event tasks, Duke is able to filter by overdue and upcoming tasks.
 
 ## Usage
 
