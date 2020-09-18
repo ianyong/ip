@@ -27,7 +27,6 @@ public class Gui extends Application {
             stage.setScene(scene);
             stage.setTitle("Duke");
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/Dog Emoji.png")));
-            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
