@@ -1,6 +1,10 @@
+<link rel="stylesheet" type="text/css" media="all" href="../assets/css/style.css" />
+
 # Duke | User Guide
 
-![Duke](Ui.png)
+<div class="image-container">
+    <img class="image" src="Ui.png" alt="User Interface of Duke">
+</div>
 
 Duke is a *Personal Assistant Chatbot* with task management functionality.
 Keep track of all your tasks with ease!
